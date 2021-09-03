@@ -49,6 +49,7 @@ app.use(
 );
 
 app.use(routerProductos);
+app.use('/api', routerProductos);
 
 // const persistencePath = path.resolve(
 //   __dirname,
@@ -57,6 +58,7 @@ app.use(routerProductos);
 
 io.on('connection', async (socket) => {
   console.log(socket.id);
+
   socket.on('agregado-usuario', (u) => usuarios.addUsuario(socket.id, u));
 
   socket.on('agregado-mensaje', async (m) => {
@@ -67,8 +69,8 @@ io.on('connection', async (socket) => {
     io.emit('procesado-mensaje', mensaje);
   });
 
-  socket.on('agregado-producto', (p) => {
-    const producto = productos.addProducto(p.title, p.price, p.thumbnail);
+  socket.on('agregado-producto', async (p) => {
+    const producto = await productos.addProducto(p.title, p.price, p.thumbnail);
     // listaProductos.agregar(producto);
     io.emit('procesado-producto', producto);
   });

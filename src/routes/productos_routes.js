@@ -5,14 +5,14 @@ import productos from '../models/productos.js';
 const routes = express.Router();
 
 // Rutas GET
-routes.get('/listar', (req, res) => {
-  const listaProductos = productos.showProductos();
+routes.get('/listar', async (req, res) => {
+  const listaProductos = await productos.showProductos();
   res.json(listaProductos);
 });
 
-routes.get('/listar/:id', (req, res) => {
+routes.get('/listar/:id', async (req, res) => {
   // const indice = req.params.id;
-  const unProducto = productos.showUnProducto(req.params.id);
+  const unProducto = await productos.showUnProducto(req.params.id);
   res.json(unProducto);
 });
 
@@ -22,18 +22,23 @@ routes.get('/', (req, res) => {
 });
 
 // Rutas POST
-routes.post('/guardar', (req, res) => {
+routes.post('/guardar', async (req, res) => {
   const producto = req.body;
-  productos.addProducto(producto.title, producto.price, producto.thumbnail);
+  const agregado = await productos.addProducto(
+    producto.title,
+    producto.price,
+    producto.thumbnail
+  );
+  res.json(agregado);
   // res.render('main', productos.showProductos());
-  res.render('main');
-  res.redirect('back');
+  // res.render('main');
+  // res.redirect('back');
 });
 
 // Rutas PUT
-routes.put('/actualizar/:id', (req, res) => {
+routes.put('/actualizar/:id', async (req, res) => {
   const newInfo = req.body;
-  const productoModificado = productos.modifyProducto(
+  const productoModificado = await productos.modifyProducto(
     req.params.id,
     newInfo.title,
     newInfo.price,
@@ -43,8 +48,8 @@ routes.put('/actualizar/:id', (req, res) => {
 });
 
 // Rutas DELETE
-routes.delete('/borrar/:id', (req, res) => {
-  const newProductos = productos.deleteProducto(req.params.id);
+routes.delete('/borrar/:id', async (req, res) => {
+  const newProductos = await productos.deleteProducto(req.params.id);
   res.json(newProductos);
 });
 
