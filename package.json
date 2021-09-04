@@ -1,5 +1,5 @@
 {
-  "name": "tarea13",
+  "name": "tarea17",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,15 +13,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rbrtrss/tarea13.git"
+    "url": "git+https://github.com/rbrtrss/tarea17.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rbrtrss/tarea13/issues"
+    "url": "https://github.com/rbrtrss/tarea17/issues"
   },
-  "homepage": "https://github.com/rbrtrss/tarea13#readme",
+  "homepage": "https://github.com/rbrtrss/tarea17#readme",
   "devDependencies": {
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
